@@ -21,7 +21,7 @@ function latencyTracker(req , res , next)
         // second index gives nanoseconds so we divide it by 1e6 to convert to milliseconds
 
         // this is total latency of the request
-        const latency = Number(end[0]*1e3 + end[1]/1e6).toFixed(2); // converting to milliseconds   
+     const latency = Number((end[0]*1e3 + end[1]/1e6).toFixed(2)); // converting to milliseconds   
 
         const payload = {
             projectId: process.env.PROJECT_ID || 'demo-project',
@@ -34,6 +34,8 @@ function latencyTracker(req , res , next)
             redisTimeMs: req._metrics.redisTimeMs
         };
         // setImmediate is used here to avoid blocking the main thread while sending metrics
+        // how main thread can be blocked while sending metrics ?
+        //  answer :if the /metrics endpoint is slow or unresponsive , it can block the main thread
     setImmediate(async () => {
     try {
       await fetch('http://localhost:3000/metrics', {

@@ -15,6 +15,6 @@ app.get('/test' , (req , res )=>
 })
 app.listen(3000 , ()=>
 {
-    console.log('API Observer listening on port 3000');
+    console.log('Latensy listening on port 3000');
 }
 );
