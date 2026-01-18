@@ -1,0 +1,15 @@
+Request enters
+   ↓
+Middleware creates req._metrics
+   ↓
+Controller passes req._metrics to service
+   ↓
+Service calls timedQuery
+   ↓
+timedQuery measures DB time
+   ↓
+Service adds DB time to req._metrics
+   ↓
+Response sent
+   ↓
+Middleware reads req._metrics.dbTimeMs
